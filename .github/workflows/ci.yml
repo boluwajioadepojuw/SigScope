@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: pytest (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Run test suite
+        run: pytest -q
+
+  coverage-gate:
+    # attack-mapper gating its own detection repo: the job fails (exit != 0)
+    # if no Sigma rule maps to ATT&CK — the Detection-as-Code use case.
+    name: ATT&CK coverage gate
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: pip install -e .
+      - name: Map rules onto ATT&CK (gate + artifacts)
+        run: |
+          mkdir -p out
+          attack-mapper rules/ \
+            --html out/coverage_report.html --style report \
+            --json out/coverage.json \
+            --badge out/coverage_badge.svg
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: attack-coverage
+          path: out/

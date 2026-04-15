@@ -1,0 +1,18 @@
+title: Web Shell Dropped To Disk
+id: 33333333-3333-3333-3333-333333333333
+status: experimental
+description: Detects common web shell file writes. Maps to T1505.003 (no attack. tag, URL only).
+references:
+  - https://attack.mitre.org/techniques/T1505/003
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|endswith:
+      - '.aspx'
+      - '.php'
+  filter:
+    TargetFilename|startswith: 'C:\inetpub\wwwroot\safe\'
+  condition: selection and not filter
+level: high

@@ -1,0 +1,37 @@
+name: ATT&CK dataset freshness
+
+# Rebuilds data/attack_db.json from the latest official MITRE STIX bundle
+# once a month. If the result differs from the committed snapshot, the job
+# fails — a red X on the badge means "MITRE shipped an update, regenerate
+# the DB and review the diff" (exactly how the v19 tactic split would have
+# been caught the week it landed).
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of every month
+  workflow_dispatch:        # allow manual runs from the Actions tab
+
+jobs:
+  check-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: pip install -e .
+      - name: Download latest MITRE STIX bundle
+        run: |
+          curl -sSL -o /tmp/enterprise-attack.json \
+            https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json
+      - name: Rebuild compact DB
+        run: ATTACK_MAPPER_STIX=/tmp/enterprise-attack.json python -m attack_mapper.build_db
+      - name: Fail if the committed snapshot is stale
+        run: |
+          if ! git diff --quiet -- data/attack_db.json; then
+            echo "::error::MITRE published an ATT&CK update. Regenerate data/attack_db.json and review the diff."
+            git diff --stat -- data/attack_db.json
+            exit 1
+          fi
+          echo "Snapshot is up to date with MITRE CTI master."

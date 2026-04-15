@@ -1,0 +1,169 @@
+{
+  "version": "Enterprise ATT&CK (2026-04-14)",
+  "rules_analyzed": 3,
+  "coverage": {
+    "covered": 6,
+    "covered_in_scope": 6,
+    "in_scope": 697,
+    "ratio": 0.0086
+  },
+  "scope": {
+    "include": [],
+    "ignore": [],
+    "ignored_count": 0,
+    "out_of_scope_count": 0
+  },
+  "unknown_technique_ids": [],
+  "unmapped_rules": [],
+  "covered_techniques": [
+    {
+      "id": "T1053",
+      "name": "Scheduled Task/Job",
+      "rules": [
+        "rules/scheduled_task.yml"
+      ]
+    },
+    {
+      "id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "rules": [
+        "rules/powershell_encoded.yml"
+      ]
+    },
+    {
+      "id": "T1505",
+      "name": "Server Software Component",
+      "rules": [
+        "rules/web_shell.yml"
+      ]
+    },
+    {
+      "id": "T1053.005",
+      "name": "Scheduled Task",
+      "rules": [
+        "rules/scheduled_task.yml"
+      ]
+    },
+    {
+      "id": "T1059.001",
+      "name": "PowerShell",
+      "rules": [
+        "rules/powershell_encoded.yml"
+      ]
+    },
+    {
+      "id": "T1505.003",
+      "name": "Web Shell",
+      "rules": [
+        "rules/web_shell.yml"
+      ]
+    }
+  ],
+  "tactics": [
+    {
+      "tactic": "stealth",
+      "name": "Stealth",
+      "covered": 0,
+      "total": 148,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "persistence",
+      "name": "Persistence",
+      "covered": 4,
+      "total": 113,
+      "ratio": 0.035398230088495575
+    },
+    {
+      "tactic": "privilege-escalation",
+      "name": "Privilege Escalation",
+      "covered": 2,
+      "total": 96,
+      "ratio": 0.020833333333333332
+    },
+    {
+      "tactic": "credential-access",
+      "name": "Credential Access",
+      "covered": 0,
+      "total": 67,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "execution",
+      "name": "Execution",
+      "covered": 4,
+      "total": 64,
+      "ratio": 0.0625
+    },
+    {
+      "tactic": "defense-impairment",
+      "name": "Defense Impairment",
+      "covered": 0,
+      "total": 56,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "resource-development",
+      "name": "Resource Development",
+      "covered": 0,
+      "total": 50,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "discovery",
+      "name": "Discovery",
+      "covered": 0,
+      "total": 49,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "reconnaissance",
+      "name": "Reconnaissance",
+      "covered": 0,
+      "total": 46,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "command-and-control",
+      "name": "Command and Control",
+      "covered": 0,
+      "total": 45,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "collection",
+      "name": "Collection",
+      "covered": 0,
+      "total": 41,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "impact",
+      "name": "Impact",
+      "covered": 0,
+      "total": 33,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "lateral-movement",
+      "name": "Lateral Movement",
+      "covered": 0,
+      "total": 23,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "initial-access",
+      "name": "Initial Access",
+      "covered": 0,
+      "total": 22,
+      "ratio": 0.0
+    },
+    {
+      "tactic": "exfiltration",
+      "name": "Exfiltration",
+      "covered": 0,
+      "total": 19,
+      "ratio": 0.0
+    }
+  ]
+}
