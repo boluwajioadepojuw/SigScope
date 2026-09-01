@@ -9,7 +9,7 @@ description = "Map your Sigma detection rules onto the MITRE ATT&CK matrix and f
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Jose (JoseArgento)" }]
+authors = [{ name = "Boluwaji Oluwaseyi Adepoju" }]
 keywords = ["mitre", "att-ck", "sigma", "detection-engineering", "soc", "blue-team"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -23,9 +23,9 @@ classifiers = [
 dependencies = ["pyyaml>=6.0"]
 
 [project.urls]
-Homepage = "https://github.com/JoseArgento/attack-mapper"
-Repository = "https://github.com/JoseArgento/attack-mapper"
-Issues = "https://github.com/JoseArgento/attack-mapper/issues"
+Homepage = "https://github.com/boluwaji/AttackAtlas"
+Repository = "https://github.com/boluwaji/AttackAtlas"
+Issues = "https://github.com/boluwaji/AttackAtlas/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]

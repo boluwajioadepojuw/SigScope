@@ -1,7 +1,7 @@
 # AttackAtlas 🎯
 
-[![CI](https://github.com/JoseArgento/AttackAtlas/actions/workflows/ci.yml/badge.svg)](https://github.com/JoseArgento/AttackAtlas/actions/workflows/ci.yml)
-[![ATT&CK dataset](https://github.com/JoseArgento/AttackAtlas/actions/workflows/update-attack-db.yml/badge.svg)](https://github.com/JoseArgento/AttackAtlas/actions/workflows/update-attack-db.yml)
+[![CI](https://github.com/boluwaji/AttackAtlas/actions/workflows/ci.yml/badge.svg)](https://github.com/boluwaji/AttackAtlas/actions/workflows/ci.yml)
+[![ATT&CK dataset](https://github.com/boluwaji/AttackAtlas/actions/workflows/update-attack-db.yml/badge.svg)](https://github.com/boluwaji/AttackAtlas/actions/workflows/update-attack-db.yml)
 [![PyPI](https://img.shields.io/pypi/v/AttackAtlas)](https://pypi.org/project/AttackAtlas/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -48,7 +48,7 @@ cover, and where are the blind spots?"*
 
 | `report` (print-ready dossier) | `matrix` (cards) |
 | --- | --- |
-| ![report style](https://raw.githubusercontent.com/JoseArgento/AttackAtlas/main/docs/screenshot_report.png) | ![matrix style](https://raw.githubusercontent.com/JoseArgento/AttackAtlas/main/docs/screenshot_matrix.png) |
+| ![report style](https://raw.githubusercontent.com/boluwaji/AttackAtlas/main/docs/screenshot_report.png) | ![matrix style](https://raw.githubusercontent.com/boluwaji/AttackAtlas/main/docs/screenshot_matrix.png) |
 
 ## Install
 
