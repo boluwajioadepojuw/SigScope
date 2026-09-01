@@ -1,8 +1,8 @@
-# AttackAtlas 🎯
+# CoverageGate 🎯
 
-[![CI](https://github.com/boluwaji/AttackAtlas/actions/workflows/ci.yml/badge.svg)](https://github.com/boluwaji/AttackAtlas/actions/workflows/ci.yml)
-[![ATT&CK dataset](https://github.com/boluwaji/AttackAtlas/actions/workflows/update-attack-db.yml/badge.svg)](https://github.com/boluwaji/AttackAtlas/actions/workflows/update-attack-db.yml)
-[![PyPI](https://img.shields.io/pypi/v/AttackAtlas)](https://pypi.org/project/AttackAtlas/)
+[![CI](https://github.com/boluwaji/CoverageGate/actions/workflows/ci.yml/badge.svg)](https://github.com/boluwaji/CoverageGate/actions/workflows/ci.yml)
+[![ATT&CK dataset](https://github.com/boluwaji/CoverageGate/actions/workflows/update-attack-db.yml/badge.svg)](https://github.com/boluwaji/CoverageGate/actions/workflows/update-attack-db.yml)
+[![PyPI](https://img.shields.io/pypi/v/CoverageGate)](https://pypi.org/project/CoverageGate/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Map your **Sigma detection rules** onto the **MITRE ATT&CK** matrix and find your
@@ -48,12 +48,12 @@ cover, and where are the blind spots?"*
 
 | `report` (print-ready dossier) | `matrix` (cards) |
 | --- | --- |
-| ![report style](https://raw.githubusercontent.com/boluwaji/AttackAtlas/main/docs/screenshot_report.png) | ![matrix style](https://raw.githubusercontent.com/boluwaji/AttackAtlas/main/docs/screenshot_matrix.png) |
+| ![report style](https://raw.githubusercontent.com/boluwaji/CoverageGate/main/docs/screenshot_report.png) | ![matrix style](https://raw.githubusercontent.com/boluwaji/CoverageGate/main/docs/screenshot_matrix.png) |
 
 ## Install
 
 ```bash
-pip install AttackAtlas
+pip install CoverageGate
 ```
 
 For development:
@@ -68,24 +68,24 @@ pytest
 
 ```bash
 # Map a folder of Sigma rules, print the terminal report, emit HTML (matrix)
-AttackAtlas rules/ --html sample/coverage_matrix.html
+CoverageGate rules/ --html sample/coverage_matrix.html
 
 # Try the other HTML styles
-AttackAtlas rules/ --html sample/coverage_rows.html  --style rows
-AttackAtlas rules/ --html sample/coverage_heat.html  --style heat
-AttackAtlas rules/ --html sample/coverage_report.html --style report
+CoverageGate rules/ --html sample/coverage_rows.html  --style rows
+CoverageGate rules/ --html sample/coverage_heat.html  --style heat
+CoverageGate rules/ --html sample/coverage_report.html --style report
 
 # Scope the analysis: only Execution + T1053, ignore Reconnaissance
-AttackAtlas rules/ --include T1059 TA0002 --ignore Reconnaissance
+CoverageGate rules/ --include T1059 TA0002 --ignore Reconnaissance
 
 # Portfolio artifacts: badge + JSON
-AttackAtlas rules/ --badge sample/coverage_badge.svg --json sample/coverage.json
+CoverageGate rules/ --badge sample/coverage_badge.svg --json sample/coverage.json
 ```
 
 Run against the bundled sample rules:
 
 ```bash
-AttackAtlas rules/ --html sample/coverage_matrix.html --badge sample/coverage_badge.svg
+CoverageGate rules/ --html sample/coverage_matrix.html --badge sample/coverage_badge.svg
 ```
 
 ## Why not sigma2attack or DeTT&CT?
@@ -97,7 +97,7 @@ heavyweight: it scores data-source *visibility* as well as detection
 coverage, and is the right tool for a mature SOC doing formal capability
 assessments.
 
-AttackAtlas sits in between, optimized for Detection-as-Code pipelines:
+CoverageGate sits in between, optimized for Detection-as-Code pipelines:
 it runs offline with a bundled dataset, produces self-contained HTML
 reports you can email or print (plus the Navigator layer, a badge, and
 JSON), gates CI with its exit code, and supports scope filters for
@@ -145,7 +145,7 @@ You can also run directly off the STIX bundle at runtime by setting
 ## Project layout
 
 ```
-AttackAtlas/
+CoverageGate/
 ├── attack_mapper/
 │   ├── cli.py            # argparse entry point
 │   ├── sigma_parser.py   # Sigma → ATT&CK technique IDs
