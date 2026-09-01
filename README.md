@@ -129,14 +129,14 @@ and denominator are scoped).
 
 ## Updating the ATT&CK dataset
 
-The shipped `attack_mapper/data/attack_db.json` is a snapshot (regenerated
+The shipped `coverage_gate/data/attack_db.json` is a snapshot (regenerated
 automatically by a monthly GitHub Action that fails when MITRE ships an update). To regenerate from the latest
 official STIX bundle:
 
 ```bash
 curl -L -o enterprise-attack.json \
   https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json
-ATTACK_MAPPER_STIX=enterprise-attack.json python -m attack_mapper.build_db
+ATTACK_MAPPER_STIX=enterprise-attack.json python -m coverage_gate.build_db
 ```
 
 You can also run directly off the STIX bundle at runtime by setting
@@ -146,7 +146,7 @@ You can also run directly off the STIX bundle at runtime by setting
 
 ```
 CoverageGate/
-├── attack_mapper/
+├── coverage_gate/
 │   ├── cli.py            # argparse entry point
 │   ├── sigma_parser.py   # Sigma → ATT&CK technique IDs
 │   ├── attack_loader.py  # ATT&CK DB (compact JSON / STIX)

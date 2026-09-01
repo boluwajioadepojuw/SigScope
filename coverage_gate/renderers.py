@@ -543,7 +543,7 @@ def render_html(
     # "layer" / "navigator" versions are required for Navigator to accept the
     # file; the ATT&CK content version string is informative.
     layer = {
-        "name": "attack-mapper coverage",
+        "name": "coverage-gate coverage",
         "versions": {"attack": db.version, "navigator": "5.1.0", "layer": "4.5"},
         "domain": "enterprise-attack",
         "techniques": [

@@ -1,4 +1,4 @@
-"""CLI entry point for attack-mapper."""
+"""CLI entry point for coverage-gate."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from .plugins import render_badge, render_json
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="attack-mapper",
+        prog="coverage-gate",
         description="Map your Sigma detection rules onto the MITRE ATT&CK matrix "
         "and find coverage gaps.",
     )

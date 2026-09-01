@@ -3,7 +3,7 @@
 These catch the class of bug where a stray brace in the inline <script>
 silently kills ALL interactivity (search, export, toggles) at once.
 
-NOTE: we shell out to the real CLI (``python -m attack_mapper.cli``) to
+NOTE: we shell out to the real CLI (``python -m coverage_gate.cli``) to
 generate the HTML because importing the package directly is flaky in this
 sandbox. The CLI path is the one users actually run, so it's a fine test.
 """
@@ -23,7 +23,7 @@ RULES = os.path.join(REPO, "rules")
 def _render(tmp_path, style):
     out = str(tmp_path / f"cov_{style}.html")
     cli = [
-        sys.executable, "-m", "attack_mapper.cli",
+        sys.executable, "-m", "coverage_gate.cli",
         RULES, "--html", out, "--style", style,
     ]
     r = subprocess.run(cli, capture_output=True, text=True, cwd=REPO, timeout=60)

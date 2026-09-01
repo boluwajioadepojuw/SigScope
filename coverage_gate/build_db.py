@@ -2,7 +2,7 @@
 
 Usage:
     ATTACK_MAPPER_STIX=path/to/enterprise-attack.json \
-        python -m attack_mapper.build_db
+        python -m coverage_gate.build_db
 """
 
 from __future__ import annotations

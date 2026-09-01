@@ -31,10 +31,10 @@ Issues = "https://github.com/boluwaji/CoverageGate/issues"
 dev = ["pytest>=7.0"]
 
 [project.scripts]
-CoverageGate = "attack_mapper.cli:main"
+CoverageGate = "coverage_gate.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["attack_mapper*"]
+include = ["coverage_gate*"]
 
 [tool.setuptools.package-data]
-attack_mapper = ["data/*.json"]
+coverage_gate = ["data/*.json"]

@@ -6,7 +6,7 @@
 ## 0.4.0 — 2026-07-10 (first public release)
 
 - **Packaging**: the compact ATT&CK DB now ships *inside* the package
-  (`attack_mapper/data/`), so `pip install attack-mapper` works out of the box.
+  (`coverage_gate/data/`), so `pip install coverage-gate` works out of the box.
 - Added `LICENSE` (MIT), PyPI metadata (classifiers, project URLs).
 
 ## 0.3.0

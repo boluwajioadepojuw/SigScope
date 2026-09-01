@@ -1,4 +1,4 @@
-"""Unit tests for attack-mapper."""
+"""Unit tests for coverage-gate."""
 
 import os
 import sys
@@ -7,7 +7,7 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from attack_mapper import (  # noqa: E402
+from coverage_gate import (  # noqa: E402
     AttackDB,
     build_report,
     parse_rule_text,

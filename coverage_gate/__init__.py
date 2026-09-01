@@ -1,4 +1,4 @@
-"""attack-mapper: map your Sigma detection rules onto the MITRE ATT&CK matrix."""
+"""coverage-gate: map your Sigma detection rules onto the MITRE ATT&CK matrix."""
 
 from .attack_loader import AttackDB, load_attack
 from .coverage import CoverageReport, build_report

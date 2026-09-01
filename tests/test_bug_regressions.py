@@ -22,8 +22,8 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from attack_mapper import AttackDB, build_report, parse_rule_text  # noqa: E402
-from attack_mapper.attack_loader import _load_stix  # noqa: E402
+from coverage_gate import AttackDB, build_report, parse_rule_text  # noqa: E402
+from coverage_gate.attack_loader import _load_stix  # noqa: E402
 from tests.fixtures import ATTACK_FIXTURE  # noqa: E402
 
 

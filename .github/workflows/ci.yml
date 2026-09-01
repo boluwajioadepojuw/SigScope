@@ -24,7 +24,7 @@ jobs:
         run: pytest -q
 
   coverage-gate:
-    # attack-mapper gating its own detection repo: the job fails (exit != 0)
+    # coverage-gate gating its own detection repo: the job fails (exit != 0)
     # if no Sigma rule maps to ATT&CK — the Detection-as-Code use case.
     name: ATT&CK coverage gate
     needs: test
@@ -39,7 +39,7 @@ jobs:
       - name: Map rules onto ATT&CK (gate + artifacts)
         run: |
           mkdir -p out
-          attack-mapper rules/ \
+          coverage-gate rules/ \
             --html out/coverage_report.html --style report \
             --json out/coverage.json \
             --badge out/coverage_badge.svg
