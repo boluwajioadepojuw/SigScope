@@ -1,6 +1,5 @@
 # CoverageGate 🎯
 
-[![PyPI](https://img.shields.io/pypi/v/CoverageGate)](https://pypi.org/project/CoverageGate/)
 
 Map your **Sigma detection rules** onto the **MITRE ATT&CK** matrix and find your
 coverage gaps — fast, offline, and CI-friendly.
