@@ -1,9 +1,6 @@
 # CoverageGate 🎯
 
-[![CI](https://github.com/boluwaji/CoverageGate/actions/workflows/ci.yml/badge.svg)](https://github.com/boluwaji/CoverageGate/actions/workflows/ci.yml)
-[![ATT&CK dataset](https://github.com/boluwaji/CoverageGate/actions/workflows/update-attack-db.yml/badge.svg)](https://github.com/boluwaji/CoverageGate/actions/workflows/update-attack-db.yml)
 [![PyPI](https://img.shields.io/pypi/v/CoverageGate)](https://pypi.org/project/CoverageGate/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Map your **Sigma detection rules** onto the **MITRE ATT&CK** matrix and find your
 coverage gaps — fast, offline, and CI-friendly.
@@ -48,7 +45,6 @@ cover, and where are the blind spots?"*
 
 | `report` (print-ready dossier) | `matrix` (cards) |
 | --- | --- |
-| ![report style](https://raw.githubusercontent.com/boluwaji/CoverageGate/main/docs/screenshot_report.png) | ![matrix style](https://raw.githubusercontent.com/boluwaji/CoverageGate/main/docs/screenshot_matrix.png) |
 
 ## Install
 
