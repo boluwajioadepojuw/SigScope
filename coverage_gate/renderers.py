@@ -156,7 +156,7 @@ function setup(){
       if(!area) return;
       var hidden = area.style.display === 'none';
       area.style.display = hidden ? '' : 'none';
-      btn.textContent = hidden ? '👁' : '🚫';  // eye / no-entry
+      btn.textContent = hidden ? '' : '';  // eye / no-entry
       btn.classList.toggle('off', !hidden);
     });
   });
@@ -332,7 +332,7 @@ def render_html(
             area_id = f"area-{tactic}"
             blocks.append(
                 f'<div class="tactic-wrap">'
-                f'<button class="eye" data-toggle="{area_id}" title="hide/show area">👁</button>'
+                f'<button class="eye" data-toggle="{area_id}" title="hide/show area"></button>'
                 f'<div class="tactic" id="{area_id}">'
                 f'<div class="thead collapse-trigger" data-target="{body_id}" style="background:{color}">'
                 f'<span class="tname">{info["name"]} '
@@ -359,7 +359,7 @@ def render_html(
             area_id = f"area-{tactic}"
             rows.append(
                 f'<div class="row-wrap">'
-                f'<button class="eye" data-toggle="{area_id}" title="hide/show area">👁</button>'
+                f'<button class="eye" data-toggle="{area_id}" title="hide/show area"></button>'
                 f'<div class="row" id="{area_id}">'
                 f'<div class="rname collapse-trigger" data-target="{body_id}" data-tids="{ids}">'
                 f'<span class="et"><span>{info["name"]}</span></span></div>'
@@ -531,7 +531,7 @@ def render_html(
             area_id = f"area-{tactic}"
             rows.append(
                 f'<div class="hrow-wrap">'
-                f'<button class="eye" data-toggle="{area_id}" title="hide/show area">👁</button>'
+                f'<button class="eye" data-toggle="{area_id}" title="hide/show area"></button>'
                 f'<div class="hrow" id="{area_id}">'
                 f'<div class="hlabel collapse-trigger" data-target="{body_id}">'
                 f'<span>{info["name"]}</span></div>'
