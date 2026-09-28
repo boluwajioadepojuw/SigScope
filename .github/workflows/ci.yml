@@ -40,9 +40,9 @@ jobs:
         run: |
           mkdir -p out
           coverage-gate rules/ \
-            --html out/coverage_report.html --style report \
-            --json out/coverage.json \
-            --badge out/coverage_badge.svg
+            --html out/report.html --style report \
+            --json out/summary.json \
+            --badge out/badge.svg
       - name: Upload coverage artifacts
         uses: actions/upload-artifact@v4
         with:

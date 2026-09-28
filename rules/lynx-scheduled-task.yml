@@ -1,0 +1,26 @@
+title: Scheduled Task Created by Shell
+id: 8ab1d3e2-77a4-4c9e-b31f-lynx0000c2
+status: experimental
+description: Detects schtasks.exe creating a task from a shell, the common persistence move after tool transfer.
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.persistence
+    - attack.t1053.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\schtasks.exe'
+        CommandLine|contains:
+            - '/create'
+        ParentImage|endswith:
+            - '\\cmd.exe'
+            - '\\powershell.exe'
+    condition: selection
+falsepositives:
+    - Software installers registering maintenance tasks
+level: medium

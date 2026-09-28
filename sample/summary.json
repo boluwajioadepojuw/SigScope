@@ -1,0 +1,14 @@
+{
+  "covered_techniques": [
+    "T1027",
+    "T1053",
+    "T1053.005",
+    "T1059",
+    "T1059.001",
+    "T1505",
+    "T1505.003"
+  ],
+  "covered_count": 7,
+  "total_techniques": 54,
+  "unlinked_ids": []
+}

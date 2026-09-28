@@ -1,0 +1,27 @@
+title: PowerShell Encoded Command Execution
+id: 4f7c2a91-11e0-4b3a-9d52-lynx0000c1
+status: experimental
+description: Detects PowerShell started with an encoded command line, the classic way to hide payload content from plain-text inspection.
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+    - https://attack.mitre.org/techniques/T1027/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.execution
+    - attack.defense_evasion
+    - attack.t1059.001
+    - attack.t1027
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\powershell.exe'
+        CommandLine|contains:
+            - '-EncodedCommand'
+            - '-enc '
+    condition: selection
+falsepositives:
+    - Admin tooling that legitimately ships encoded commands
+level: high

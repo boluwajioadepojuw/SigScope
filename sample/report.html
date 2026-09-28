@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Coverage Gate</title>
+<style>
+body { font-family: system-ui, sans-serif; background:#0a0f16; color:#e8eef4; margin:24px; }
+h1 { font-size:20px; letter-spacing:.06em; }
+.meta { color:#94a7b8; font-size:12px; margin-bottom:18px; }
+.tactic { margin:14px 0 6px; color:#5ecbcf; font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+.tech { display:inline-block; margin:3px; padding:5px 9px; border-radius:3px; font-size:12px; }
+.hit { background:#1e4d3f; border:1px solid #2f7a63; color:#d9f5ec; }
+.miss { background:#3a2327; border:1px solid #6e3940; color:#f2d4d9; }
+.bar { height:8px; border-radius:2px; background:#22303f; margin:4px 0 10px; }
+.bar i { display:block; height:8px; border-radius:2px; background:#5ecbcf; }
+table { border-collapse:collapse; font-size:12px; width:100%; }
+td,th { padding:4px 8px; border-bottom:1px solid #22303f; text-align:left; }
+</style></head><body>
+<h1>Coverage Gate — report</h1>
+<div class="meta">7 of 54 techniques covered</div>
+<table>
+<tr><th>Technique</th><th>Name</th><th>Tactic</th><th>Rules</th></tr>
+<tr><td>T1027</td><td>Obfuscated Files or Information</td><td>DEFENSE_EVASION</td><td>lynx-encoded-powershell.yml</td></tr>
+<tr><td>T1053</td><td>Scheduled Task/Job</td><td>PERSISTENCE</td><td>lynx-scheduled-task.yml</td></tr>
+<tr><td>T1053.005</td><td>Scheduled Task</td><td>PERSISTENCE</td><td>lynx-scheduled-task.yml</td></tr>
+<tr><td>T1059</td><td>Command and Scripting Interpreter</td><td>EXECUTION</td><td>lynx-encoded-powershell.yml</td></tr>
+<tr><td>T1059.001</td><td>PowerShell</td><td>EXECUTION</td><td>lynx-encoded-powershell.yml</td></tr>
+<tr><td>T1505</td><td>Server Software Component</td><td>PERSISTENCE</td><td>lynx-web-shell.yml</td></tr>
+<tr><td>T1505.003</td><td>Web Shell</td><td>PERSISTENCE</td><td>lynx-web-shell.yml</td></tr>
+</table></body></html>

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "CoverageGate"
-version = "0.4.1"
+version = "0.5.0"
 description = "Map your Sigma detection rules onto the MITRE ATT&CK matrix and find coverage gaps."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -31,10 +31,8 @@ Issues = "https://github.com/boluwaji/CoverageGate/issues"
 dev = ["pytest>=7.0"]
 
 [project.scripts]
-CoverageGate = "coverage_gate.cli:main"
+coverage-gate = "coverage_gate.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["coverage_gate*"]
 
-[tool.setuptools.package-data]
-coverage_gate = ["data/*.json"]

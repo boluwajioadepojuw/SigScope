@@ -1,0 +1,28 @@
+title: Web Shell File Written to Web Root
+id: c2f04b57-9d10-4e6a-8a41-lynx0000c3
+status: experimental
+description: Detects script files written into a web server document root, the typical landing step for a web shell.
+references:
+    - https://attack.mitre.org/techniques/T1505/003/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.persistence
+    - attack.t1505.003
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|contains:
+            - '\\inetpub\\wwwroot\\'
+            - '\\www\\'
+        TargetFilename|endswith:
+            - '.asp'
+            - '.aspx'
+            - '.php'
+            - '.jsp'
+    condition: selection
+falsepositives:
+    - Legitimate web deployments during release windows
+level: high
