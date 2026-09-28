@@ -6,3 +6,6 @@ dist/
 build/
 *.egg-info/
 data/enterprise-attack.json
+.pytest_cache/
+.benchmarks/
+*.log
