@@ -9,3 +9,7 @@ data/enterprise-attack.json
 .pytest_cache/
 .benchmarks/
 *.log
+
+# coverage artifacts
+.coverage
+htmlcov/
