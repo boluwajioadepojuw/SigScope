@@ -1,6 +1,5 @@
 from coverage_gate.cli import main
 
-
 RULE = '''title: Test rule
 owner: lab
 id: 00000000-0000-4000-8000-000000000001
@@ -72,3 +71,43 @@ def test_gap_workbook_next_actions(tmp_path):
     gaps_path = tmp_path / 'gaps2.md'
     main([rule, '--gaps', str(gaps_path), '--quiet'])
     assert 'Next actions' in gaps_path.read_text()
+
+
+def test_bad_rule_warns_but_passes_without_strict(tmp_path):
+    bad = tmp_path / 'bad.yml'
+    bad.write_text('{{ not yaml')
+    good = _write_rule(tmp_path)
+    assert main([str(bad), good, '--quiet']) == 0
+
+
+def test_bad_rule_fails_with_strict(tmp_path):
+    bad = tmp_path / 'bad.yml'
+    bad.write_text('{{ not yaml')
+    good = _write_rule(tmp_path)
+    assert main([str(bad), good, '--strict', '--quiet']) == 1
+
+
+def test_navigator_output(tmp_path):
+    rule = _write_rule(tmp_path)
+    layer_path = tmp_path / 'layer.json'
+    rc = main([rule, '--navigator', str(layer_path), '--quiet'])
+    assert rc == 0
+    import json
+    layer = json.loads(layer_path.read_text())
+    assert layer['domain'] == 'enterprise-attack'
+    assert any(t['techniqueID'] == 'T1059.004' for t in layer['techniques'])
+
+
+def test_min_tactic_coverage_pass(tmp_path):
+    rule = _write_rule(tmp_path)
+    assert main([rule, '--include', 'execution', '--min-tactic-coverage', '1', '--quiet']) == 0
+
+
+def test_comma_separated_include_tokens(tmp_path):
+    rule = _write_rule(tmp_path)
+    assert main([rule, '--include', 'execution,T1059.004', '--min-tactic-coverage', '1', '--quiet']) == 0
+
+
+def test_min_tactic_coverage_fail_exits_2(tmp_path):
+    rule = _write_rule(tmp_path)
+    assert main([rule, '--include', 'execution', '--min-tactic-coverage', '90', '--quiet']) == 2

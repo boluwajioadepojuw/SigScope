@@ -22,3 +22,15 @@
 
 - Added --gaps: Markdown detection coverage workbook with the uncovered techniques and next actions.
 - 17 tests.
+
+## 0.6.0 (2026-10-01)
+
+- Added --navigator: ATT&CK Navigator layer export (covered techniques at
+  score 100, gaps at score 0).
+- Added --strict: exit 1 when any rule file cannot be parsed. scan_rules()
+  now reports broken files instead of silently dropping them.
+- Added --min-tactic-coverage: fail the gate when a single tactic drops
+  below the threshold, not only the overall coverage.
+- CI now runs ruff, pytest-cov, and the strict coverage gate; the gate job
+  uploads a Navigator layer alongside the HTML/JSON/badge artifacts.
+- Packaging: PEP 639 SPDX license, setuptools>=77, version 0.6.0.

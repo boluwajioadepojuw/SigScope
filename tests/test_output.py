@@ -1,6 +1,6 @@
 from coverage_gate.attck import AttackMap
 from coverage_gate.gate import evaluate
-from coverage_gate.out import badge, html_report, json_summary, terminal
+from coverage_gate.out import badge, html_report, json_summary, navigator_layer, terminal
 from coverage_gate.scanner import ScannedRule
 
 
@@ -35,3 +35,12 @@ def test_html_styles_render():
         doc = html_report(rep, style)
         assert "<html" in doc
         assert "SigScope" in doc
+
+
+def test_navigator_layer_shape():
+    import json
+    layer = json.loads(navigator_layer(build_report()))
+    assert layer["domain"] == "enterprise-attack"
+    covered = {t["techniqueID"] for t in layer["techniques"]}
+    assert "T1059.001" in covered
+    assert any(t["score"] == 0 for t in layer["techniques"])

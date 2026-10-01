@@ -9,8 +9,30 @@ import sys
 
 from .attck import AttackMap
 from .gate import evaluate
-from .out import STYLES, badge, csv_summary, gap_workbook, html_report, json_summary, terminal
+from .out import (
+    STYLES,
+    badge,
+    csv_summary,
+    gap_workbook,
+    html_report,
+    json_summary,
+    navigator_layer,
+    terminal,
+)
 from .scanner import scan_rules
+
+
+def _split_tokens(values: list[str] | None) -> set[str]:
+    """Split --include/--ignore values on commas so both
+    '--include execution persistence' and '--include execution,persistence' work.
+    """
+    out: set[str] = set()
+    for value in values or []:
+        for token in value.split(","):
+            token = token.strip()
+            if token:
+                out.add(token)
+    return out
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -30,8 +52,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--csv", metavar="PATH", default=None, help="Also write a CSV of covered techniques to PATH.")
     p.add_argument("--min-coverage", type=int, default=0, metavar="PCT", help="Fail (exit 2) when coverage is below this percentage.")
     p.add_argument("--gaps", metavar="PATH", default=None, help="Write a Markdown workbook of uncovered techniques to PATH.")
+    p.add_argument("--navigator", metavar="PATH", default=None, help="Write an ATT&CK Navigator layer JSON to PATH.")
+    p.add_argument("--strict", action="store_true", help="Fail (exit 1) when any rule file cannot be parsed.")
+    p.add_argument("--min-tactic-coverage", type=int, default=0, metavar="PCT", help="Fail (exit 2) when any tactic's coverage is below this percentage.")
     p.add_argument("--quiet", action="store_true", help="Suppress the terminal table.")
-    p.add_argument("--version", action="version", version="%(prog)s 0.5.0")
+    p.add_argument("--version", action="version", version="%(prog)s 0.6.0")
     return p
 
 
@@ -42,13 +67,18 @@ def main(argv=None) -> int:
         with open(args.db, encoding="utf-8") as fh:
             overrides = json.load(fh)
     mapping = AttackMap.build(overrides)
-    rules = scan_rules(args.rules)
+    rules, errors = scan_rules(args.rules)
+    for path, exc in errors:
+        print(f"warning: skipping unparseable rule file {path}: {exc}", file=sys.stderr)
+    if errors and args.strict:
+        print(f"error: {len(errors)} rule file(s) could not be parsed (--strict)", file=sys.stderr)
+        return 1
     if not rules:
         print("No Sigma rules found at the given path(s).", file=sys.stderr)
         return 1
     report = evaluate(rules, mapping,
-                      include=set(args.include or []),
-                      ignore=set(args.ignore or []))
+                      include=_split_tokens(args.include),
+                      ignore=_split_tokens(args.ignore))
     if not args.quiet:
         print(terminal(report))
     if args.html:
@@ -67,6 +97,10 @@ def main(argv=None) -> int:
         with open(args.csv, "w", encoding="utf-8") as fh:
             fh.write(csv_summary(report))
         print(f"CSV written to: {os.path.abspath(args.csv)}")
+    if args.navigator:
+        with open(args.navigator, "w", encoding="utf-8") as fh:
+            fh.write(navigator_layer(report))
+        print(f"Navigator layer written to: {os.path.abspath(args.navigator)}")
     if args.badge:
         with open(args.badge, "w", encoding="utf-8") as fh:
             fh.write(badge(report))
@@ -77,6 +111,18 @@ def main(argv=None) -> int:
         pct = round(report.covered_count / report.total_count * 100) if report.total_count else 0
         if pct < args.min_coverage:
             print(f"Gate failed: {pct}% covered, threshold is {args.min_coverage}%", file=sys.stderr)
+            return 2
+    if args.min_tactic_coverage:
+        weak = [
+            f"{tactic} ({pct}%)"
+            for tactic, pct in sorted(report.tactic_coverage.items())
+            if pct < args.min_tactic_coverage
+        ]
+        if weak:
+            print(
+                f"Gate failed: tactics below {args.min_tactic_coverage}%: " + ", ".join(weak),
+                file=sys.stderr,
+            )
             return 2
     return 0
 

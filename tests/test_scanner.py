@@ -31,9 +31,11 @@ def test_directory_walk(tmp_path):
     assert len(got) == 2
 
 
-def test_bad_file_is_skipped(tmp_path):
+def test_bad_file_is_reported_and_good_files_scan(tmp_path):
     d = tmp_path / "rules"
     d.mkdir()
     (d / "bad.yml").write_text("{{ not yaml")
-    got = scan_rules([str(d)])
-    assert got == []
+    (d / "good.yml").write_text("title: A\nlogsource:\n    category: process_creation\ndetection:\n    condition: selection\n")
+    rules, errors = scan_rules([str(d)])
+    assert [e[0] for e in errors] == [str(d / "bad.yml")]
+    assert len(rules) == 1

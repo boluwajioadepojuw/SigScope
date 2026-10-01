@@ -3,8 +3,12 @@
 Walks Sigma YAML files and pulls out the detection-relevant bits the rest of
 the tool needs: rule title, logsource category, MITRE technique references
 (from tags and from the references list) and a human-readable detection
-summary. One function: scan_rule_file. Nothing else.
+summary.
+
+scan_rules() never hides a broken file: unparseable rules are reported in
+the returned error list so callers (the CLI) can warn or fail on them.
 """
+
 
 from __future__ import annotations
 
@@ -12,7 +16,6 @@ import glob
 import os
 import re
 from dataclasses import dataclass, field
-from typing import List
 
 import yaml
 
@@ -25,12 +28,12 @@ class ScannedRule:
     path: str
     title: str
     category: str
-    techniques: List[str] = field(default_factory=list)
+    techniques: list[str] = field(default_factory=list)
     summary: str = ""
 
 
-def _walk_files(paths: List[str]) -> List[str]:
-    out: List[str] = []
+def _walk_files(paths: list[str]) -> list[str]:
+    out: list[str] = []
     for p in paths:
         if os.path.isdir(p):
             out += sorted(glob.glob(os.path.join(p, "*.yml")) + glob.glob(os.path.join(p, "*.yaml")))
@@ -39,8 +42,8 @@ def _walk_files(paths: List[str]) -> List[str]:
     return list(dict.fromkeys(out))
 
 
-def _pull_techniques(doc: dict) -> List[str]:
-    found: List[str] = []
+def _pull_techniques(doc: dict) -> list[str]:
+    found: list[str] = []
     seen = set()
     for tag in doc.get("tags") or []:
         m = _TAG_RE.match(str(tag))
@@ -74,11 +77,18 @@ def scan_rule_file(path: str) -> ScannedRule:
     )
 
 
-def scan_rules(paths: List[str]) -> List[ScannedRule]:
-    rules: List[ScannedRule] = []
+def scan_rules(paths: list[str]) -> tuple[list[ScannedRule], list[tuple[str, str]]]:
+    """Scan every file under paths.
+
+    Returns (rules, errors): errors is a list of (path, message) for
+    files that could not be parsed. Broken rules are never silently
+    dropped from the coverage picture.
+    """
+    rules: list[ScannedRule] = []
+    errors: list[tuple[str, str]] = []
     for f in _walk_files(paths):
         try:
             rules.append(scan_rule_file(f))
-        except Exception:
-            continue
-    return rules
+        except (OSError, ValueError, TypeError, yaml.YAMLError) as exc:
+            errors.append((f, str(exc)))
+    return rules, errors

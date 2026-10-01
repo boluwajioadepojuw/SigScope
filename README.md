@@ -1,5 +1,7 @@
 # SigScope
 
+[![CI](https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml/badge.svg)](https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml)
+
 A small Python tool for detection engineers. It answers one question:
 which MITRE ATT&CK techniques do my Sigma rules actually cover, and
 where are the gaps?
@@ -33,9 +35,12 @@ Heatmap and rows views:
 - matches each rule against a curated MITRE ATT&CK technique set
 - reports coverage per tactic and technique
 - renders the result in four HTML styles (matrix, rows, heatmap, report)
-- optionally emits JSON, a coverage badge, and a Navigator-friendly
-  export
-- exits non-zero in CI mode when coverage drops below the threshold
+- optionally emits JSON, a coverage badge, and an ATT&CK Navigator
+  layer for visual review
+- exits non-zero in CI mode when overall coverage (or any single
+  tactic's coverage) drops below the threshold
+- fails on unparseable rule files in --strict mode instead of letting
+  broken rules silently erode the coverage picture
 
 ## Install
 
@@ -47,8 +52,22 @@ pip install -e .
 
 ```bash
 sig-scope rules --html report.html
-sig-scope rules --html report.html --badge badge.svg --csv out.csv --gaps gaps.md --min-coverage 40
+sig-scope rules --html report.html --badge badge.svg --csv out.csv \
+  --gaps gaps.md --navigator layer.json \
+  --min-coverage 40 --strict
+# per-tactic gate: scope to the tactics you write rules for
+sig-scope rules --include execution,persistence \
+  --min-tactic-coverage 25
 ```
+
+- `--navigator` writes an ATT&CK Navigator layer: covered techniques
+  score 100, gaps score 0. Load it at the ATT&CK Navigator site.
+- `--strict` makes unparseable rule files fail the run instead of a
+  warning.
+- `--min-tactic-coverage` fails the gate when one tactic drops below
+  the threshold, even if overall coverage still passes. Combine it with
+  `--include`/`--ignore` (tactic names or technique prefixes, comma
+  or space separated) to scope which tactics are gated.
 
 The `rules/` directory holds example Sigma rules. Point the command at
 your own rule set in a real pipeline.
@@ -59,6 +78,14 @@ Detection rules that are never mapped to ATT&CK drift silently. This
 tool makes the drift visible. Wired into CI, a coverage drop becomes a
 build failure instead of a surprise. Same detection-as-code discipline
 large SOC teams use.
+
+## Related projects
+
+- [SOCAtelier](https://github.com/boluwajioadepojuw/SOCAtelier) - the SOC lab where the bundled lynx rules fire
+- [SplunkHarbor](https://github.com/boluwajioadepojuw/SplunkHarbor) - Splunk ingestion for the same Windows telemetry
+- [IocVerdict](https://github.com/boluwajioadepojuw/IocVerdict) - IOC enrichment for the indicators the rules surface
+- [DomainSieve](https://github.com/boluwajioadepojuw/DomainSieve) - NRD feed to Suricata rules on the gateway
+- [ArpSieve](https://github.com/boluwajioadepojuw/ArpSieve) - ARP spoofing detection on the local segment
 
 ## Author
 

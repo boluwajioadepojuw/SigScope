@@ -1,21 +1,20 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "SigScope"
-version = "0.5.0"
+version = "0.6.0"
 description = "Map your Sigma detection rules onto the MITRE ATT&CK matrix and find coverage gaps."
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Boluwaji Oluwaseyi Adepoju" }]
 keywords = ["mitre", "att-ck", "sigma", "detection-engineering", "soc", "blue-team"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Information Technology",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Topic :: Security",
@@ -28,7 +27,11 @@ Repository = "https://github.com/boluwajioadepojuw/SigScope"
 Issues = "https://github.com/boluwajioadepojuw/SigScope/issues"
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.5"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
 
 [project.scripts]
 sig-scope = "coverage_gate.cli:main"

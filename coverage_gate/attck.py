@@ -8,7 +8,6 @@ when the rule set grows.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
 
 
 @dataclass
@@ -25,7 +24,7 @@ _TACTICS = [
     "COMMAND_AND_CONTROL", "EXFILTRATION", "IMPACT",
 ]
 
-_TECHNIQUES: List[Technique] = [
+_TECHNIQUES: list[Technique] = [
     Technique("T1059", "Command and Scripting Interpreter", "EXECUTION"),
     Technique("T1059.001", "PowerShell", "EXECUTION"),
     Technique("T1059.003", "Windows Command Shell", "EXECUTION"),
@@ -85,11 +84,11 @@ _TECHNIQUES: List[Technique] = [
 
 @dataclass
 class AttackMap:
-    techniques: Dict[str, Technique] = field(default_factory=dict)
-    tactics: List[str] = field(default_factory=lambda: list(_TACTICS))
+    techniques: dict[str, Technique] = field(default_factory=dict)
+    tactics: list[str] = field(default_factory=lambda: list(_TACTICS))
 
     @classmethod
-    def build(cls, overrides: Optional[Dict] = None) -> "AttackMap":
+    def build(cls, overrides: dict | None = None) -> AttackMap:
         m = cls()
         for t in _TECHNIQUES:
             m.techniques[t.id] = t
@@ -98,7 +97,7 @@ class AttackMap:
                 m.techniques[tid] = Technique(tid, data.get("name", tid), data.get("tactic", "EXECUTION"))
         return m
 
-    def lookup(self, tid: str) -> Optional[Technique]:
+    def lookup(self, tid: str) -> Technique | None:
         if tid in self.techniques:
             return self.techniques[tid]
         return None
@@ -107,5 +106,5 @@ class AttackMap:
         t = self.lookup(tid)
         return t.tactic if t else "UNKNOWN"
 
-    def children_of(self, tid: str) -> List[str]:
+    def children_of(self, tid: str) -> list[str]:
         return sorted(k for k in self.techniques if k.startswith(tid + "."))

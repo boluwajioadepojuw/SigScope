@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<title>Coverage Gate</title>
+<title>SigScope</title>
 <style>
 body { font-family: system-ui, sans-serif; background:#0a0f16; color:#e8eef4; margin:24px; }
 h1 { font-size:20px; letter-spacing:.06em; }
@@ -14,15 +14,31 @@ h1 { font-size:20px; letter-spacing:.06em; }
 table { border-collapse:collapse; font-size:12px; width:100%; }
 td,th { padding:4px 8px; border-bottom:1px solid #22303f; text-align:left; }
 </style></head><body>
-<h1>Coverage Gate — report</h1>
-<div class="meta">7 of 54 techniques covered</div>
+<h1>SigScope — report</h1>
+<div class="meta">23 of 54 techniques covered</div>
 <table>
 <tr><th>Technique</th><th>Name</th><th>Tactic</th><th>Rules</th></tr>
+<tr><td>T1003</td><td>OS Credential Dumping</td><td>CREDENTIAL_ACCESS</td><td>lynx-lsass-credential-dump.yml, lynx-procdump-lsass.yml, lynx-tasklist-lsass-discovery.yml</td></tr>
+<tr><td>T1003.001</td><td>LSASS Memory</td><td>CREDENTIAL_ACCESS</td><td>lynx-lsass-credential-dump.yml, lynx-procdump-lsass.yml, lynx-tasklist-lsass-discovery.yml</td></tr>
+<tr><td>T1012</td><td>Query Registry</td><td>DISCOVERY</td><td>lynx-regquery-disk-enum.yml</td></tr>
+<tr><td>T1016</td><td>System Network Configuration Discovery</td><td>DISCOVERY</td><td>lynx-discovery-scripted-parent.yml</td></tr>
 <tr><td>T1027</td><td>Obfuscated Files or Information</td><td>DEFENSE_EVASION</td><td>lynx-encoded-powershell.yml</td></tr>
-<tr><td>T1053</td><td>Scheduled Task/Job</td><td>PERSISTENCE</td><td>lynx-scheduled-task.yml</td></tr>
-<tr><td>T1053.005</td><td>Scheduled Task</td><td>PERSISTENCE</td><td>lynx-scheduled-task.yml</td></tr>
-<tr><td>T1059</td><td>Command and Scripting Interpreter</td><td>EXECUTION</td><td>lynx-encoded-powershell.yml</td></tr>
-<tr><td>T1059.001</td><td>PowerShell</td><td>EXECUTION</td><td>lynx-encoded-powershell.yml</td></tr>
+<tr><td>T1033</td><td>System Owner/User Discovery</td><td>DISCOVERY</td><td>lynx-discovery-scripted-parent.yml, lynx-ps1-discovery-persistence-chain.yml</td></tr>
+<tr><td>T1049</td><td>System Network Connections Discovery</td><td>DISCOVERY</td><td>lynx-discovery-scripted-parent.yml</td></tr>
+<tr><td>T1053</td><td>Scheduled Task/Job</td><td>PERSISTENCE</td><td>lynx-ps1-discovery-persistence-chain.yml, lynx-scheduled-task.yml, lynx-schtasks-persistence.yml</td></tr>
+<tr><td>T1053.005</td><td>Scheduled Task</td><td>PERSISTENCE</td><td>lynx-ps1-discovery-persistence-chain.yml, lynx-scheduled-task.yml, lynx-schtasks-persistence.yml</td></tr>
+<tr><td>T1057</td><td>Process Discovery</td><td>DISCOVERY</td><td>lynx-tasklist-lsass-discovery.yml, lynx-wmic-process-enum.yml</td></tr>
+<tr><td>T1059</td><td>Command and Scripting Interpreter</td><td>EXECUTION</td><td>lynx-art-execution.yml, lynx-encoded-powershell.yml, lynx-ps1-discovery-persistence-chain.yml, lynx-ps1-download-cradle.yml, lynx-ps1-execution-policy-bypass.yml</td></tr>
+<tr><td>T1059.001</td><td>PowerShell</td><td>EXECUTION</td><td>lynx-art-execution.yml, lynx-encoded-powershell.yml, lynx-ps1-discovery-persistence-chain.yml, lynx-ps1-download-cradle.yml, lynx-ps1-execution-policy-bypass.yml</td></tr>
+<tr><td>T1071</td><td>Application Layer Protocol</td><td>COMMAND_AND_CONTROL</td><td>lynx-net-powershell-connection.yml</td></tr>
+<tr><td>T1071.001</td><td>Web Protocols</td><td>COMMAND_AND_CONTROL</td><td>lynx-net-powershell-connection.yml</td></tr>
+<tr><td>T1082</td><td>System Information Discovery</td><td>DISCOVERY</td><td>lynx-discovery-scripted-parent.yml, lynx-ps1-discovery-persistence-chain.yml, lynx-regquery-disk-enum.yml</td></tr>
+<tr><td>T1136</td><td>Create Account</td><td>PERSISTENCE</td><td>lynx-account-created.yml</td></tr>
+<tr><td>T1136.001</td><td>Local Account</td><td>PERSISTENCE</td><td>lynx-account-created.yml</td></tr>
+<tr><td>T1218</td><td>System Binary Proxy Execution</td><td>DEFENSE_EVASION</td><td>lynx-mshta-child-process.yml</td></tr>
+<tr><td>T1218.005</td><td>Mshta</td><td>DEFENSE_EVASION</td><td>lynx-mshta-child-process.yml</td></tr>
 <tr><td>T1505</td><td>Server Software Component</td><td>PERSISTENCE</td><td>lynx-web-shell.yml</td></tr>
 <tr><td>T1505.003</td><td>Web Shell</td><td>PERSISTENCE</td><td>lynx-web-shell.yml</td></tr>
+<tr><td>T1547</td><td>Boot or Logon Autostart Execution</td><td>PERSISTENCE</td><td>lynx-ps1-discovery-persistence-chain.yml, lynx-runkey-persistence.yml</td></tr>
+<tr><td>T1547.001</td><td>Registry Run Keys / Startup Folder</td><td>PERSISTENCE</td><td>lynx-ps1-discovery-persistence-chain.yml, lynx-runkey-persistence.yml</td></tr>
 </table></body></html>
