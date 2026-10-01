@@ -44,9 +44,16 @@ Heatmap and rows views:
 
 ## Install
 
+Local install:
+
 ```bash
 pip install -e .
 ```
+
+PyPI release: tagging a version (git tag v0.6.0 && git push --tags) runs
+.github/workflows/publish.yml, which builds and publishes via PyPI trusted
+publishing. One-time setup: create the project on pypi.org and add this
+repository as a trusted publisher (Settings -> Publishing).
 
 ## Use
 
