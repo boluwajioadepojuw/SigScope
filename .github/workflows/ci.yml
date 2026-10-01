@@ -22,9 +22,11 @@ jobs:
         run: pip install -e ".[dev]"
       - name: Run test suite
         run: pytest -q
+      - name: Coverage gate
+        run: sig-scope rules --min-coverage 60 --quiet
 
-  coverage-gate:
-    # coverage-gate gating its own detection repo: the job fails (exit != 0)
+  sig-scope:
+    # sig-scope gating its own detection repo: the job fails (exit != 0)
     # if no Sigma rule maps to ATT&CK — the Detection-as-Code use case.
     name: ATT&CK coverage gate
     needs: test
@@ -39,7 +41,7 @@ jobs:
       - name: Map rules onto ATT&CK (gate + artifacts)
         run: |
           mkdir -p out
-          coverage-gate rules/ \
+          sig-scope rules/ \
             --html out/report.html --style report \
             --json out/summary.json \
             --badge out/badge.svg

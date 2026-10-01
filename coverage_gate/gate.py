@@ -31,6 +31,7 @@ class GateReport:
     covered: Dict[str, List[str]] = field(default_factory=dict)
     skipped: List[str] = field(default_factory=list)
     unlinked: List[str] = field(default_factory=list)
+    gaps: List = field(default_factory=list)
 
     @property
     def covered_count(self) -> int:
@@ -54,4 +55,9 @@ def evaluate(rules: List[ScannedRule], mapping: AttackMap,
                 rep.unlinked.append(tid)
                 continue
             rep.covered.setdefault(tid, []).append(rule.path)
+    for tid in mapping.techniques:
+        if _in_scope(tid, include, ignore) and tid not in rep.covered:
+            tech = mapping.lookup(tid)
+            if tech is not None:
+                rep.gaps.append(tech)
     return rep

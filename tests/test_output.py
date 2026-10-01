@@ -34,4 +34,4 @@ def test_html_styles_render():
     for style in ("matrix", "rows", "heat", "report"):
         doc = html_report(rep, style)
         assert "<html" in doc
-        assert "Coverage Gate" in doc
+        assert "SigScope" in doc

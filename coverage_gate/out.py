@@ -13,7 +13,7 @@ STYLES = ["matrix", "rows", "heat", "report"]
 
 def terminal(report: GateReport) -> str:
     lines: List[str] = []
-    lines.append("coverage-gate")
+    lines.append("sig-scope")
     lines.append("=" * 40)
     for tid, paths in sorted(report.covered.items()):
         t = report.mapping.lookup(tid)
@@ -49,7 +49,7 @@ def badge(report: GateReport) -> str:
 
 _HTML_HEAD = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<title>Coverage Gate</title>
+<title>SigScope</title>
 <style>
 body { font-family: system-ui, sans-serif; background:#0a0f16; color:#e8eef4; margin:24px; }
 h1 { font-size:20px; letter-spacing:.06em; }
@@ -66,7 +66,7 @@ td,th { padding:4px 8px; border-bottom:1px solid #22303f; text-align:left; }
 
 
 def _html_matrix(report: GateReport) -> str:
-    chunks = [_HTML_HEAD, "<h1>Coverage Gate — ATT&CK matrix</h1>",
+    chunks = [_HTML_HEAD, "<h1>SigScope — ATT&CK matrix</h1>",
               f'<div class="meta">{report.covered_count} of {report.total_count} techniques covered</div>']
     for tactic in report.mapping.tactics:
         techs = [t for t in report.mapping.techniques.values() if t.tactic == tactic]
@@ -81,7 +81,7 @@ def _html_matrix(report: GateReport) -> str:
 
 
 def _html_rows(report: GateReport) -> str:
-    chunks = [_HTML_HEAD, "<h1>Coverage Gate — per technique</h1>",
+    chunks = [_HTML_HEAD, "<h1>SigScope — per technique</h1>",
               f'<div class="meta">{report.covered_count} of {report.total_count} techniques covered</div>']
     for tactic in report.mapping.tactics:
         techs = [t for t in report.mapping.techniques.values() if t.tactic == tactic]
@@ -98,7 +98,7 @@ def _html_rows(report: GateReport) -> str:
 
 
 def _html_heat(report: GateReport) -> str:
-    chunks = [_HTML_HEAD, "<h1>Coverage Gate — heat view</h1>",
+    chunks = [_HTML_HEAD, "<h1>SigScope — heat view</h1>",
               f'<div class="meta">{report.covered_count} of {report.total_count} techniques covered</div>', "<table>"]
     for tactic in report.mapping.tactics:
         techs = [t for t in report.mapping.techniques.values() if t.tactic == tactic]
@@ -116,7 +116,7 @@ def _html_heat(report: GateReport) -> str:
 
 
 def _html_report(report: GateReport) -> str:
-    chunks = [_HTML_HEAD, "<h1>Coverage Gate — report</h1>",
+    chunks = [_HTML_HEAD, "<h1>SigScope — report</h1>",
               f'<div class="meta">{report.covered_count} of {report.total_count} techniques covered</div>', "<table>"]
     chunks.append("<tr><th>Technique</th><th>Name</th><th>Tactic</th><th>Rules</th></tr>")
     for tid, paths in sorted(report.covered.items()):
@@ -135,3 +135,39 @@ def html_report(report: GateReport, style: str) -> str:
         "heat": _html_heat,
         "report": _html_report,
     }[style](report)
+
+def csv_summary(report: GateReport) -> str:
+    """CSV of covered techniques for easy diffing in CI."""
+    rows = ["technique_id,technique_name,rules"]
+    for tid, paths in sorted(report.covered.items()):
+        t = report.mapping.lookup(tid)
+        name = (t.name if t else tid).replace(",", " ")
+        rows.append(f"{tid},{name},{len(paths)}")
+    return "\n".join(rows) + "\n"
+
+
+def gap_workbook(report: GateReport) -> str:
+    """Markdown workbook of the techniques still uncovered."""
+    lines = [
+        "# Detection coverage workbook",
+        "",
+        f"Covered {report.covered_count} of {report.total_count} techniques.",
+        "",
+        "## Gaps",
+        "",
+        "| Technique | Name | Tactic | Note |",
+        "| --- | --- | --- | --- |",
+    ]
+    for tech in report.gaps:
+        lines.append(f"| {tech.id} | {tech.name} | {tech.tactic} | no rule yet |")
+    if not report.gaps:
+        lines.append("| - | - | - | nothing uncovered |")
+    lines += [
+        "",
+        "## Next actions",
+        "",
+    ]
+    for tech in report.gaps:
+        lines.append(f"- Write a rule that catches {tech.name.lower()} (tactic: {tech.tactic.lower()}).")
+    lines.append("")
+    return "\n".join(lines)

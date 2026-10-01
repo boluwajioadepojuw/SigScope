@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "CoverageGate"
+name = "SigScope"
 version = "0.5.0"
 description = "Map your Sigma detection rules onto the MITRE ATT&CK matrix and find coverage gaps."
 readme = "README.md"
@@ -23,15 +23,15 @@ classifiers = [
 dependencies = ["pyyaml>=6.0"]
 
 [project.urls]
-Homepage = "https://github.com/boluwaji/CoverageGate"
-Repository = "https://github.com/boluwaji/CoverageGate"
-Issues = "https://github.com/boluwaji/CoverageGate/issues"
+Homepage = "https://github.com/boluwajioadepojuw/SigScope"
+Repository = "https://github.com/boluwajioadepojuw/SigScope"
+Issues = "https://github.com/boluwajioadepojuw/SigScope/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
 
 [project.scripts]
-coverage-gate = "coverage_gate.cli:main"
+sig-scope = "coverage_gate.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["coverage_gate*"]

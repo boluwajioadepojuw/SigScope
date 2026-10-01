@@ -1,4 +1,4 @@
-# CoverageGate
+# SigScope
 
 A small Python tool for detection engineers. It answers one question:
 which MITRE ATT&CK techniques do my Sigma rules actually cover, and
@@ -7,10 +7,16 @@ where are the gaps?
 It works fully offline, reads local rule files, and plugs into CI so
 coverage regressions fail the build.
 
+## Screenshot
+
+Rendered matrix report from the bundled lynx rules:
+
+![SigScope report](screenshots/sigscope-report.png)
+
 ## What it does
 
 - parses Sigma rules from a directory
-- matches each rule against the bundled MITRE ATT&CK v19 dataset
+- matches each rule against a curated MITRE ATT&CK technique set
 - reports coverage per tactic and technique
 - renders the result in four HTML styles (matrix, rows, heatmap, report)
 - optionally emits JSON, a coverage badge, and a Navigator-friendly
@@ -26,8 +32,8 @@ pip install -e .
 ## Use
 
 ```bash
-coverage-gate rules --html report.html
-coverage-gate rules --ci --min-coverage 80
+sig-scope rules --html report.html
+sig-scope rules --ci --min-coverage 80
 ```
 
 The `rules/` directory holds example Sigma rules. Point the command at
@@ -47,3 +53,19 @@ Boluwaji Oluwaseyi Adepoju
 ## License
 
 MIT
+
+## Flow
+
+```mermaid
+flowchart TD
+    A[Sigma rule files] --> B[scanner: parse YAML + tags]
+    B --> C[map tags onto curated ATT&CK set]
+    C --> D{evaluate coverage}
+    D --> E[HTML matrix / heat / report]
+    D --> F[CSV + JSON]
+    D --> G[coverage badge]
+    D --> H[gap workbook: uncovered techniques + next actions]
+    D --> I{coverage >= threshold?}
+    I -->|no| J[exit 2 - CI build fails]
+    I -->|yes| K[exit 0]
+```

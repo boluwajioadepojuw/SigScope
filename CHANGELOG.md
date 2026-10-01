@@ -11,3 +11,14 @@
 ## 0.4.x (2026-03 / 2026-04)
 
 - early prototype with the coverage matrix and badge output
+
+## 0.5.1 (2026-09-30)
+
+- Added --min-coverage gate threshold (exit 2 when below), --csv output.
+- Coverage gate now runs in CI against rules/ at a 60% minimum.
+- Test suite grew from 11 to 15 tests.
+
+## 0.5.2 (2026-09-30)
+
+- Added --gaps: Markdown detection coverage workbook with the uncovered techniques and next actions.
+- 17 tests.
