@@ -47,7 +47,7 @@ pip install -e .
 
 ```bash
 sig-scope rules --html report.html
-sig-scope rules --ci --min-coverage 80
+sig-scope rules --html report.html --badge badge.svg --csv out.csv --gaps gaps.md --min-coverage 40
 ```
 
 The `rules/` directory holds example Sigma rules. Point the command at
