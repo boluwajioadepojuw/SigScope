@@ -13,6 +13,14 @@ Rendered matrix report from the bundled lynx rules:
 
 ![SigScope report](screenshots/sigscope-report.png)
 
+CLI run with the coverage gate:
+
+![CLI run](screenshots/sigscope-cli-run.png)
+
+Gap workbook output:
+
+![Gap workbook](screenshots/sigscope-gap-workbook.png)
+
 ## What it does
 
 - parses Sigma rules from a directory
