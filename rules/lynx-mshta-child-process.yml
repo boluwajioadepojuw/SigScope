@@ -1,0 +1,25 @@
+title: Mshta Spawning a Shell
+owner: lab
+id: e1f2a3b4-3302-4d8e-8e73-lynx0000c5
+status: experimental
+description: Detects mshta.exe launching a command shell, the classic signed-binary proxy move for script execution.
+references:
+    - https://attack.mitre.org/techniques/T1218/005/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.defense_evasion
+    - attack.t1218.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentImage|endswith: '\\mshta.exe'
+        Image|endswith:
+            - '\\cmd.exe'
+            - '\\powershell.exe'
+    condition: selection
+falsepositives:
+    - Signed helper flows from legacy installers
+level: high

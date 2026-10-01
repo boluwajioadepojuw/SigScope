@@ -1,0 +1,24 @@
+title: Hidden Attribute Set on User File
+owner: lab
+id: a3b4c5d6-5504-4fa0-8085-lynx0000c7
+status: experimental
+description: Detects attrib.exe hiding a file in a user profile, often the first step to conceal dropped tools.
+references:
+    - https://attack.mitre.org/techniques/T1564/001/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.defense_evasion
+    - attack.t1564.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\attrib.exe'
+        CommandLine|contains: '+h'
+        CommandLine|contains: '\\Users\\'
+    condition: selection
+falsepositives:
+    - Legitimate file management scripts
+level: low

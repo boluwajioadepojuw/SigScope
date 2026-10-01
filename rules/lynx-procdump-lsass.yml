@@ -1,0 +1,23 @@
+title: Procdump Reading LSASS Memory
+owner: lab
+id: c4d5e6f7-6605-4fb1-9196-lynx0000c8
+status: experimental
+description: Detects procdump being pointed at lsass.exe, the standard credential-dumping move.
+references:
+    - https://attack.mitre.org/techniques/T1003/001/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.credential_access
+    - attack.t1003.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\procdump.exe'
+        CommandLine|contains: 'lsass'
+    condition: selection
+falsepositives:
+    - Legitimate debugging sessions by approved engineers
+level: high

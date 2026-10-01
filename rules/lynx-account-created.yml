@@ -1,0 +1,24 @@
+title: Local Account Created by Shell
+owner: lab
+id: f2a3b4c5-4403-4e9f-9f84-lynx0000c6
+status: experimental
+description: Detects net.exe adding a local user from a shell, a move seen in both persistence and lateral movement playbooks.
+references:
+    - https://attack.mitre.org/techniques/T1136/001/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.persistence
+    - attack.t1136.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\net.exe'
+        CommandLine|contains: 'user'
+        CommandLine|contains: '/add'
+    condition: selection
+falsepositives:
+    - Account provisioning scripts in managed environments
+level: medium

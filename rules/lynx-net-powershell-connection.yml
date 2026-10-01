@@ -1,0 +1,30 @@
+title: PowerShell Initiating Outbound Network Connection
+id: d3e5a6b8-2201-4c7d-9e62-lynx0000c4
+status: experimental
+description: Detects PowerShell making an outbound network connection, unusual for interactive admin work and common for download cradles and C2 channels.
+references:
+    - https://attack.mitre.org/techniques/T1071/001/
+    - https://attack.mitre.org/techniques/T1105/
+author: Boluwaji Oluwaseyi Adepoju
+date: 2026/06/10
+tags:
+    - attack.command_and_control
+    - attack.execution
+    - attack.t1071.001
+    - attack.t1105
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\\powershell.exe'
+        DestinationPort:
+            - 80
+            - 443
+            - 8080
+    filter_admin:
+        User|startswith: 'NT AUTHORITY\\SYSTEM'
+    condition: selection and not filter_admin
+falsepositives:
+    - Update and telemetry tasks that run under scheduled services
+level: medium
