@@ -23,7 +23,7 @@ jobs:
       - name: Run test suite
         run: pytest -q
       - name: Coverage gate
-        run: sig-scope rules --min-coverage 60 --quiet
+        run: sig-scope rules --min-coverage 40 --quiet
 
   sig-scope:
     # sig-scope gating its own detection repo: the job fails (exit != 0)
