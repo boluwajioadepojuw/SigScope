@@ -21,6 +21,12 @@ Gap workbook output:
 
 ![Gap workbook](screenshots/sigscope-gap-workbook.png)
 
+Heatmap and rows views:
+
+![Heatmap](screenshots/sigscope-heatmap.png)
+
+![Rows](screenshots/sigscope-rows.png)
+
 ## What it does
 
 - parses Sigma rules from a directory
