@@ -1,0 +1,73 @@
+# Detection coverage workbook
+
+Covered 23 of 54 techniques.
+
+## Gaps
+
+| Technique | Name | Tactic | Note |
+| --- | --- | --- | --- |
+| T1059.003 | Windows Command Shell | EXECUTION | no rule yet |
+| T1059.004 | Unix Shell | EXECUTION | no rule yet |
+| T1106 | Native API | EXECUTION | no rule yet |
+| T1204 | User Execution | EXECUTION | no rule yet |
+| T1204.002 | Malicious File | EXECUTION | no rule yet |
+| T1078 | Valid Accounts | PERSISTENCE | no rule yet |
+| T1218.003 | CMSTP | DEFENSE_EVASION | no rule yet |
+| T1036 | Masquerading | DEFENSE_EVASION | no rule yet |
+| T1562 | Impair Defenses | DEFENSE_EVASION | no rule yet |
+| T1562.001 | Disable or Modify Tools | DEFENSE_EVASION | no rule yet |
+| T1055 | Process Injection | DEFENSE_EVASION | no rule yet |
+| T1112 | Modify Registry | DEFENSE_EVASION | no rule yet |
+| T1018 | Remote System Discovery | DISCOVERY | no rule yet |
+| T1046 | Network Service Discovery | DISCOVERY | no rule yet |
+| T1135 | Network Share Discovery | DISCOVERY | no rule yet |
+| T1021 | Remote Services | LATERAL_MOVEMENT | no rule yet |
+| T1021.001 | Remote Desktop Protocol | LATERAL_MOVEMENT | no rule yet |
+| T1021.002 | SMB/Windows Admin Shares | LATERAL_MOVEMENT | no rule yet |
+| T1560 | Archive Collected Data | COLLECTION | no rule yet |
+| T1560.001 | Archive via Utility | COLLECTION | no rule yet |
+| T1571 | Non-Standard Port | COMMAND_AND_CONTROL | no rule yet |
+| T1041 | Exfiltration Over C2 Channel | EXFILTRATION | no rule yet |
+| T1190 | Exploit Public-Facing Application | INITIAL_ACCESS | no rule yet |
+| T1566 | Phishing | INITIAL_ACCESS | no rule yet |
+| T1566.001 | Spearphishing Attachment | INITIAL_ACCESS | no rule yet |
+| T1595 | Active Scanning | RECONNAISSANCE | no rule yet |
+| T1583 | Acquire Infrastructure | RESOURCE_DEVELOPMENT | no rule yet |
+| T1485 | Data Destruction | IMPACT | no rule yet |
+| T1498 | Network Denial of Service | IMPACT | no rule yet |
+| T1548 | Abuse Elevation Control Mechanism | PRIVILEGE_ESCALATION | no rule yet |
+| T1548.002 | Bypass User Account Control | PRIVILEGE_ESCALATION | no rule yet |
+
+## Next actions
+
+- Write a rule that catches windows command shell (tactic: execution).
+- Write a rule that catches unix shell (tactic: execution).
+- Write a rule that catches native api (tactic: execution).
+- Write a rule that catches user execution (tactic: execution).
+- Write a rule that catches malicious file (tactic: execution).
+- Write a rule that catches valid accounts (tactic: persistence).
+- Write a rule that catches cmstp (tactic: defense_evasion).
+- Write a rule that catches masquerading (tactic: defense_evasion).
+- Write a rule that catches impair defenses (tactic: defense_evasion).
+- Write a rule that catches disable or modify tools (tactic: defense_evasion).
+- Write a rule that catches process injection (tactic: defense_evasion).
+- Write a rule that catches modify registry (tactic: defense_evasion).
+- Write a rule that catches remote system discovery (tactic: discovery).
+- Write a rule that catches network service discovery (tactic: discovery).
+- Write a rule that catches network share discovery (tactic: discovery).
+- Write a rule that catches remote services (tactic: lateral_movement).
+- Write a rule that catches remote desktop protocol (tactic: lateral_movement).
+- Write a rule that catches smb/windows admin shares (tactic: lateral_movement).
+- Write a rule that catches archive collected data (tactic: collection).
+- Write a rule that catches archive via utility (tactic: collection).
+- Write a rule that catches non-standard port (tactic: command_and_control).
+- Write a rule that catches exfiltration over c2 channel (tactic: exfiltration).
+- Write a rule that catches exploit public-facing application (tactic: initial_access).
+- Write a rule that catches phishing (tactic: initial_access).
+- Write a rule that catches spearphishing attachment (tactic: initial_access).
+- Write a rule that catches active scanning (tactic: reconnaissance).
+- Write a rule that catches acquire infrastructure (tactic: resource_development).
+- Write a rule that catches data destruction (tactic: impact).
+- Write a rule that catches network denial of service (tactic: impact).
+- Write a rule that catches abuse elevation control mechanism (tactic: privilege_escalation).
+- Write a rule that catches bypass user account control (tactic: privilege_escalation).
