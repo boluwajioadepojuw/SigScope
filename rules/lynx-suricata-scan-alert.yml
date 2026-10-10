@@ -1,0 +1,21 @@
+title: Suricata Scan Category Alert
+author: Boluwaji Oluwaseyi Adepoju
+id: 3cc4cddd-3759-40a6-a425-e6e1e330f6d6
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1046/
+date: 2026/10/11
+tags:
+    - attack.discovery
+    - attack.t1046
+logsource:
+    category: network
+    product: suricata
+detection:
+    selection:
+        alert.signature|contains: 'SCAN'
+    condition: selection
+falsepositives:
+    - Authorized vulnerability scanning windows
+level: low

@@ -1,5 +1,5 @@
 title: Web Shell File Written to Web Root
-id: c2f04b57-9d10-4e6a-8a41-lynx0000c3
+id: 712de531-0d25-4d12-9b06-57543cf2dbef
 status: experimental
 description: Detects script files written into a web server document root, the typical landing step for a web shell.
 references:

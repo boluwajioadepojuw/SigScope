@@ -1,0 +1,23 @@
+title: UAC Bypass via Registry Hijack
+author: Boluwaji Oluwaseyi Adepoju
+id: 481c3e18-fa53-4539-9be5-2638c4c608c9
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1548/002/
+date: 2026/10/11
+tags:
+    - attack.privilege_escalation
+    - attack.t1548.002
+logsource:
+    category: registry_event
+    product: windows
+detection:
+    selection:
+        TargetObject|contains:
+            - '\Software\Classes\ms-settings\shell\open\command'
+            - '\Software\Classes\mscfile\shell\open\command'
+    condition: selection
+falsepositives:
+    - Rare; verify the writing process before closing
+level: high

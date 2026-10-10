@@ -1,5 +1,5 @@
 title: CMD Spawning WMIC for Process Enumeration
-id: a1b2c3d4-0008-4e5f-a008-lynx00000008
+id: dc2dc787-d073-41de-8c71-317cfc5696d2
 status: test
 description: Detects cmd.exe executing wmic to enumerate running processes. Command line "cmd.exe /c wmic process get /format:list" observed directly in CASE-004 telemetry. WMIC process enumeration is a common post-exploitation reconnaissance step before lateral movement or credential access.
 references:

@@ -1,0 +1,28 @@
+title: Suspicious Named Pipe Creation
+author: Boluwaji Oluwaseyi Adepoju
+id: 9ce10c75-4887-4662-ab47-32acc179dbd7
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1055/
+date: 2026/10/11
+tags:
+    - attack.defense_evasion
+    - attack.t1055
+logsource:
+    category: pipe_created
+    product: windows
+detection:
+    selection:
+        PipeName|contains:
+            - 'MSSE-'
+            - 'postex_'
+            - 'status_'
+            - 'msagent_'
+            - 'mojo'
+            - 'wkssvc'
+            - 'ntsvcs'
+    condition: selection
+falsepositives:
+    - Cobalt Strike named pipe conventions are also used by some legit tools
+level: high

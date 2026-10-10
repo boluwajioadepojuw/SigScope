@@ -1,0 +1,29 @@
+title: Archiver Reading Sensitive Folders
+author: Boluwaji Oluwaseyi Adepoju
+id: 20cbc288-c63f-4161-88d0-98f523362ef6
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1560/001/
+date: 2026/10/11
+tags:
+    - attack.collection
+    - attack.t1560.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith:
+            - '\7z.exe'
+            - '\7za.exe'
+            - '\rar.exe'
+            - '\winrar.exe'
+        CommandLine|contains:
+            - '\Users\'
+            - '\Documents\'
+            - '\Desktop\'
+    condition: selection
+falsepositives:
+    - Backup jobs that archive user profiles on schedule
+level: medium

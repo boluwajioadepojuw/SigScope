@@ -1,0 +1,25 @@
+title: Process Spawned from Unusual Directory
+author: Boluwaji Oluwaseyi Adepoju
+id: 76ca9577-2f86-49b2-afd9-4a5cc8588f54
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1036/
+date: 2026/10/11
+tags:
+    - attack.defense_evasion
+    - attack.t1036
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|contains:
+            - '\Temp\'
+            - '\ProgramData\'
+            - '\AppData\Roaming\'
+            - '\AppData\Local\Temp\'
+    condition: selection
+falsepositives:
+    - Portable applications and self-updating installers
+level: low

@@ -1,5 +1,5 @@
 title: Scheduled Task Creation via Schtasks
-id: a1b2c3d4-0003-4e5f-a003-lynx00000003
+id: e9198377-2ea6-4194-9fe8-1fe4e45a8c5b
 status: test
 description: Detects scheduled task creation using schtasks.exe with /create flag. Used for persistence in Lynx stress test (T1053.005). Schtasks spawned as child of PowerShell or cmd.exe is particularly suspicious.
 references:

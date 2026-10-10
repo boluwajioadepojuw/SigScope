@@ -1,5 +1,5 @@
 title: Process Discovery via Tasklist with LSASS Filter
-id: a1b2c3d4-0007-4e5f-a007-lynx00000007
+id: ee645f6f-90f6-46ba-84fe-55464ffc3ca2
 status: test
 description: Detects tasklist.exe usage combined with findstr filtering for lsass, indicating an attacker enumerating processes to confirm credential store availability before dumping. Command line pattern "tasklist | findstr lsass" observed directly in CASE-004 telemetry on 2026-06-10.
 references:

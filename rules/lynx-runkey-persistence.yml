@@ -1,5 +1,5 @@
 title: Registry Run Key Write for Persistence
-id: a1b2c3d4-0004-4e5f-a004-lynx00000004
+id: 86f020bd-027c-4d89-a899-adc651859bf2
 status: test
 description: Detects writes to common registry run key locations used for persistence. Observed in Lynx stress test (T1547.001) and IR-006 scenario. Sysmon EID 13 captures registry value set events on these paths.
 references:

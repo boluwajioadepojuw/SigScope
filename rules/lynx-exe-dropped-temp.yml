@@ -1,5 +1,5 @@
 title: Executable Dropped in Temp Directory
-id: a1b2c3d4-0010-4e5f-a010-lynx00000010
+id: d3574e58-a2a8-4998-b0cb-9bc58ad03f3b
 status: test
 description: Detects executable files written to user or system temp directories. Observed repeatedly in Lynx stress test (T1105) — Atomic Red Team drops payloads to %TEMP% before execution. Sysmon EID 11 (file creation) captures these writes. High volume of this event in a short window indicates staged payload delivery.
 references:

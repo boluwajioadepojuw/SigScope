@@ -1,0 +1,21 @@
+title: Remote Desktop Connection File Created
+author: Boluwaji Oluwaseyi Adepoju
+id: 6382cda4-7065-4dd4-b255-410e4ca4e177
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1021/001/
+date: 2026/10/11
+tags:
+    - attack.lateral_movement
+    - attack.t1021.001
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|endswith: '.rdp'
+    condition: selection
+falsepositives:
+    - Helpdesk RDP profile provisioning
+level: medium

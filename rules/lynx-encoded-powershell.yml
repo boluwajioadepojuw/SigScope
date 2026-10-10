@@ -1,5 +1,5 @@
 title: PowerShell Encoded Command Execution
-id: 4f7c2a91-11e0-4b3a-9d52-lynx0000c1
+id: 6dc5477f-3b50-4150-bb3a-c3a906fda507
 status: experimental
 description: Detects PowerShell started with an encoded command line, the classic way to hide payload content from plain-text inspection.
 references:

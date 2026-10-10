@@ -1,0 +1,28 @@
+title: Registry Modified by reg.exe or regedit.exe
+author: Boluwaji Oluwaseyi Adepoju
+id: 6f3c9a51-8a2d-4c5b-9e21-7b4d6c0a1f3e
+status: experimental
+description: Detects registry key creation or value modification by reg.exe or regedit.exe, excluding autostart locations that have dedicated persistence detections.
+references:
+    - https://attack.mitre.org/techniques/T1112/
+date: 2026/10/11
+tags:
+    - attack.defense_evasion
+    - attack.t1112
+logsource:
+    category: registry_event
+    product: windows
+detection:
+    selection:
+        Image|endswith:
+            - '\reg.exe'
+            - '\regedit.exe'
+        EventType:
+            - CreateKey
+            - SetValue
+    filter_autostart:
+        TargetObject|contains: '\Software\Microsoft\Windows\CurrentVersion\Run'
+    condition: selection and not filter_autostart
+falsepositives:
+    - System administration scripts that manage registry values
+level: low

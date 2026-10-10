@@ -1,5 +1,5 @@
 title: PowerShell Initiating Outbound Network Connection
-id: d3e5a6b8-2201-4c7d-9e62-lynx0000c4
+id: afe06ef8-2b68-484b-8f81-b8becdcd6abf
 status: experimental
 description: Detects PowerShell making an outbound network connection, unusual for interactive admin work and common for download cradles and C2 channels.
 references:

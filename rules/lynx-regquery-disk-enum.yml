@@ -1,5 +1,5 @@
 title: Registry Query of Disk Enumeration Key
-id: a1b2c3d4-0009-4e5f-a009-lynx00000009
+id: d5a737c2-3754-40fe-8d56-32af425e960d
 status: test
 description: Detects querying of HKLM\SYSTEM\CurrentControlSet\Services\Disk\Enum, used by attackers to enumerate attached storage devices and understand the target environment. Command observed directly in CASE-004 telemetry via "systeminfo & reg query HKLM\SYSTEM\CurrentControlSet\Services\Disk\Enum".
 references:

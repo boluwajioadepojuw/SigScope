@@ -1,6 +1,5 @@
 title: Hidden Attribute Set on User File
-owner: lab
-id: a3b4c5d6-5504-4fa0-8085-lynx0000c7
+id: 53a5e7ed-aa9c-4ff4-967d-4ee03f15db94
 status: experimental
 description: Detects attrib.exe hiding a file in a user profile, often the first step to conceal dropped tools.
 references:

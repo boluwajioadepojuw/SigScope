@@ -1,0 +1,31 @@
+title: Office Application Spawning Script Host
+author: Boluwaji Oluwaseyi Adepoju
+id: abc18125-e652-4cbf-8ca2-cf80c33dc9d7
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1566/001/
+date: 2026/10/11
+tags:
+    - attack.initial_access
+    - attack.t1566.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentImage|endswith:
+            - '\winword.exe'
+            - '\excel.exe'
+            - '\powerpnt.exe'
+            - '\outlook.exe'
+        Image|endswith:
+            - '\wscript.exe'
+            - '\cscript.exe'
+            - '\powershell.exe'
+            - '\cmd.exe'
+            - '\mshta.exe'
+    condition: selection
+falsepositives:
+    - Office macros used by legitimate business processes
+level: high

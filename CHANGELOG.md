@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.7.0 (2026-10)
+
+- ten new rules converted from the SOCAtelier Elastic detections:
+  ping sweep, archiver on sensitive folders, process from unusual
+  directory, Suricata SCAN/EXPLOIT alerts, RDP file creation, suspicious
+  named pipes, Defender exclusion, Office spawning script host, UAC
+  bypass registry hijack
+- coverage of the 54-technique snapshot raised from 24 to 39 techniques
+  (72 percent)
+- all rule IDs are now valid UUIDs; owner fields normalized to author
+
 ## 0.6.0 (2026-10)
 
 - ATT&CK Navigator layer export

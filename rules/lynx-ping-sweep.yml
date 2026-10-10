@@ -1,0 +1,21 @@
+title: Ping Sweep Activity
+author: Boluwaji Oluwaseyi Adepoju
+id: d1f77c76-98cf-4f0a-86b7-8f0f751b2465
+status: experimental
+description: Portable version of the matching lab detection, converted from the Elastic rule shipped in SOCAtelier.
+references:
+    - https://attack.mitre.org/techniques/T1018/
+date: 2026/10/11
+tags:
+    - attack.discovery
+    - attack.t1018
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\ping.exe'
+    condition: selection
+falsepositives:
+    - Network diagnostics and monitoring tools that use ping
+level: low
