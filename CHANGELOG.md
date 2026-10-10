@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 (2026-10)
+
+- ATT&CK Navigator layer export
+- `--strict` mode: unparseable rule files fail the run instead of being skipped
+- per-tactic minimum coverage (`--min-tactic-coverage`)
+- CI: ruff lint, pytest with coverage, PyPI publish workflow
+- test suite grown from 17 to 24 tests
+- coverage gate kept at 40 percent for the curated 54-technique snapshot
+
 ## 0.5.0 (2026-06)
 
 - rebuilt the parser and coverage engine as standalone modules
